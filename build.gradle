@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.5.RELEASE' apply false
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE' apply false
+    id 'com.google.protobuf' version '0.8.12' apply false
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = JavaVersion.VERSION_11
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        dependencies {
+            dependencySet(group: 'com.linecorp.decaton', version: '0.0.34') {
+                entry 'decaton-client'
+                entry 'decaton-common'
+                entry 'decaton-processor'
+                entry 'decaton-protobuf'
+            }
+        }
+    }
+
+    idea {
+        module {
+            generatedSourceDirs += file('build/generated/source/proto/main/java')
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

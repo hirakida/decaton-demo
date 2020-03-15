@@ -1,0 +1,5 @@
+rootProject.name = 'decaton-demo'
+
+include 'processor',
+        'producer',
+        'protobuf'

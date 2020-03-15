@@ -1,0 +1,9 @@
+syntax = "proto3";
+package com.example.protocol;
+
+import "google/protobuf/timestamp.proto";
+
+message HelloTask {
+    string message = 1;
+    google.protobuf.Timestamp createdAt = 2;
+}
