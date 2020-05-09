@@ -6,6 +6,7 @@ import java.util.TimeZone;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.example.protocol.Tasks.HelloTask;
 import com.google.protobuf.Timestamp;
@@ -13,6 +14,7 @@ import com.google.protobuf.Timestamp;
 import com.linecorp.decaton.processor.DecatonProcessor;
 import com.linecorp.decaton.processor.ProcessingContext;
 
+@Component
 public class HelloTaskProcessor implements DecatonProcessor<HelloTask> {
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloTaskProcessor.class);
 

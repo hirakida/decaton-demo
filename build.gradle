@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.5.RELEASE' apply false
+    id 'org.springframework.boot' version '2.2.7.RELEASE' apply false
     id 'io.spring.dependency-management' version '1.0.9.RELEASE' apply false
     id 'com.google.protobuf' version '0.8.12' apply false
 }
@@ -19,7 +19,7 @@ subprojects {
 
     dependencyManagement {
         dependencies {
-            dependencySet(group: 'com.linecorp.decaton', version: '0.0.34') {
+            dependencySet(group: 'com.linecorp.decaton', version: '0.0.36') {
                 entry 'decaton-client'
                 entry 'decaton-common'
                 entry 'decaton-processor'

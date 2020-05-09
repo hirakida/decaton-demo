@@ -25,19 +25,20 @@ public class ProcessorConfig {
     private static final String BOOTSTRAP_SERVERS = "localhost:9092";
     private static final String CLIENT_ID = "decaton-processor";
     private static final String GROUP_ID = "decaton-demo";
+    private static final String SUBSCRIPTION_ID = "hello-processor";
+    private static final String TOPIC = "topic1";
 
     @Bean
-    public ProcessorSubscription processorSubscription() {
-        return processorSubscription("hello-processor", "topic1",
-                                     HelloTask.parser(), new HelloTaskProcessor());
+    public ProcessorSubscription helloProcessorSubscription(HelloTaskProcessor processor) {
+        return newProcessorSubscription(SUBSCRIPTION_ID, TOPIC, HelloTask.parser(), processor);
     }
 
-    private static <T extends GeneratedMessageV3> ProcessorSubscription processorSubscription(
+    private static <T extends GeneratedMessageV3> ProcessorSubscription newProcessorSubscription(
             String subscriptionId, String topic, Parser<T> parser, DecatonProcessor<T> processor) {
-        Properties consumerConfig = new Properties();
-        consumerConfig.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, CLIENT_ID);
-        consumerConfig.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
-        consumerConfig.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
+        Properties config = new Properties();
+        config.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, CLIENT_ID);
+        config.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
+        config.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
 
         ProcessorsBuilder<T> processorsBuilder =
                 ProcessorsBuilder.consuming(topic, new ProtocolBuffersDeserializer<>(parser))
@@ -50,7 +51,7 @@ public class ProcessorConfig {
 
         return SubscriptionBuilder.newBuilder(subscriptionId)
                                   .processorsBuilder(processorsBuilder)
-                                  .consumerConfig(consumerConfig)
+                                  .consumerConfig(config)
                                   .properties(propertySupplier)
                                   .buildAndStart();
     }
