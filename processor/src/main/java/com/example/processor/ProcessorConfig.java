@@ -11,12 +11,12 @@ import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.Parser;
 
 import com.linecorp.decaton.processor.DecatonProcessor;
-import com.linecorp.decaton.processor.ProcessorProperties;
-import com.linecorp.decaton.processor.ProcessorsBuilder;
-import com.linecorp.decaton.processor.Property;
-import com.linecorp.decaton.processor.PropertySupplier;
-import com.linecorp.decaton.processor.StaticPropertySupplier;
+import com.linecorp.decaton.processor.runtime.ProcessorProperties;
 import com.linecorp.decaton.processor.runtime.ProcessorSubscription;
+import com.linecorp.decaton.processor.runtime.ProcessorsBuilder;
+import com.linecorp.decaton.processor.runtime.Property;
+import com.linecorp.decaton.processor.runtime.PropertySupplier;
+import com.linecorp.decaton.processor.runtime.StaticPropertySupplier;
 import com.linecorp.decaton.processor.runtime.SubscriptionBuilder;
 import com.linecorp.decaton.protobuf.ProtocolBuffersDeserializer;
 

@@ -1,7 +1,7 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.7.RELEASE' apply false
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE' apply false
-    id 'com.google.protobuf' version '0.8.12' apply false
+    id 'org.springframework.boot' version '2.5.2' apply false
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
+    id 'com.google.protobuf' version '0.8.16' apply false
 }
 
 subprojects {
@@ -17,14 +17,19 @@ subprojects {
         mavenCentral()
     }
 
+    ext {
+        protobufVersion = '3.17.3'
+    }
+
     dependencyManagement {
         dependencies {
-            dependencySet(group: 'com.linecorp.decaton', version: '0.0.36') {
+            dependencySet(group: 'com.linecorp.decaton', version: '3.0.1') {
                 entry 'decaton-client'
                 entry 'decaton-common'
                 entry 'decaton-processor'
                 entry 'decaton-protobuf'
             }
+            dependency "com.google.protobuf:protobuf-java:$protobufVersion"
         }
     }
 

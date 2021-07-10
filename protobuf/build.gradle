@@ -1,9 +1,7 @@
 apply plugin: 'com.google.protobuf'
 
-def protobufVersion = '3.11.4'
-
 dependencies {
-    implementation "com.google.protobuf:protobuf-java:$protobufVersion"
+    implementation 'com.google.protobuf:protobuf-java'
 }
 
 protobuf {
