@@ -24,7 +24,7 @@ public class DecatonClientConfig {
     }
 
     private static <T extends MessageLite> DecatonClient<T> newClient(String topic) {
-        Properties config = new Properties();
+        final Properties config = new Properties();
         config.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
 
         return DecatonClient.producing(topic, new ProtocolBuffersSerializer<T>())

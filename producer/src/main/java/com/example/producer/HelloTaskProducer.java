@@ -19,15 +19,15 @@ public class HelloTaskProducer {
     }
 
     public void putTask(int key) {
-        long millis = System.currentTimeMillis();
-        Timestamp timestamp = Timestamp.newBuilder()
-                                       .setSeconds(millis / 1000)
-                                       .setNanos((int) ((millis % 1000) * 1000000))
-                                       .build();
-        HelloTask task = HelloTask.newBuilder()
-                                  .setMessage("Hello " + key)
-                                  .setCreatedAt(timestamp)
-                                  .build();
+        final long millis = System.currentTimeMillis();
+        final Timestamp timestamp = Timestamp.newBuilder()
+                                             .setSeconds(millis / 1000)
+                                             .setNanos((int) ((millis % 1000) * 1000000))
+                                             .build();
+        final HelloTask task = HelloTask.newBuilder()
+                                        .setMessage("Hello " + key)
+                                        .setCreatedAt(timestamp)
+                                        .build();
 
         client.put(String.valueOf(key), task)
               .whenComplete((result, e) -> {

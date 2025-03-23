@@ -1,0 +1,16 @@
+[versions]
+decaton = "9.1.0"
+protobuf = "4.30.0"
+spring-boot = "3.4.3"
+
+[libraries]
+decaton-client = { module = "com.linecorp.decaton:decaton-client", version.ref = "decaton" }
+decaton-processor = { module = "com.linecorp.decaton:decaton-processor", version.ref = "decaton" }
+decaton-protobuf = { module = "com.linecorp.decaton:decaton-protobuf", version.ref = "decaton" }
+protobuf-java = { module = "com.google.protobuf:protobuf-java", version.ref = "protobuf" }
+protobuf-protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }
+
+[plugins]
+com-google-protobuf = { id = "com.google.protobuf", version = "0.9.4" }
+io-spring-dependency-management = { id = "io.spring.dependency-management", version = "1.1.7" }
+org-springframework-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

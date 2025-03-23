@@ -1,8 +1,6 @@
 package com.example.processor;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.TimeZone;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +18,8 @@ public class HelloTaskProcessor implements DecatonProcessor<HelloTask> {
 
     @Override
     public void process(ProcessingContext<HelloTask> context, HelloTask task) throws InterruptedException {
-        Timestamp timestamp = task.getCreatedAt();
-        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp.getSeconds(),
-                                                                               timestamp.getNanos()),
-                                                         TimeZone.getDefault().toZoneId());
-        LOGGER.info("message={} createdAt={}", task.getMessage(), dateTime);
+        final Timestamp timestamp = task.getCreatedAt();
+        final Instant instant = Instant.ofEpochSecond(timestamp.getSeconds(), timestamp.getNanos());
+        LOGGER.info("message={} timestamp={} metadata={}", task.getMessage(), instant, context.metadata());
     }
 }

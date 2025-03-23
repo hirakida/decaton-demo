@@ -1,11 +1,14 @@
-apply plugin: 'com.google.protobuf'
+plugins {
+    id 'decaton-demo.java-conventions'
+    alias(libs.plugins.com.google.protobuf)
+}
 
 dependencies {
-    implementation 'com.google.protobuf:protobuf-java'
+    implementation libs.protobuf.java
 }
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:$protobufVersion"
+        artifact = libs.protobuf.protoc.get()
     }
 }

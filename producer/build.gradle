@@ -1,10 +1,13 @@
-apply plugin: 'org.springframework.boot'
+plugins {
+    id 'decaton-demo.java-conventions'
+    alias(libs.plugins.org.springframework.boot)
+    alias(libs.plugins.io.spring.dependency.management)
+}
 
 dependencies {
     implementation project(':protobuf')
-    implementation 'com.linecorp.decaton:decaton-client'
-    implementation 'com.linecorp.decaton:decaton-common'
-    implementation 'com.linecorp.decaton:decaton-protobuf'
+    implementation libs.decaton.client
+    implementation libs.decaton.protobuf
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
