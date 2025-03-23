@@ -22,7 +22,8 @@ public class HelloTaskProcessor implements DecatonProcessor<HelloTask> {
         final Timestamp timestamp = task.getCreatedAt();
         final Instant instant = Instant.ofEpochSecond(timestamp.getSeconds(), timestamp.getNanos());
 
-        LOGGER.info("message={} timestamp={} metadata={}", task.getMessage(), instant, context.metadata());
+        LOGGER.info("[{}] message={} timestamp={} metadata={}",
+                    context.subscriptionId(), task.getMessage(), instant, context.metadata());
         TimeUnit.MILLISECONDS.sleep(1000);
     }
 }

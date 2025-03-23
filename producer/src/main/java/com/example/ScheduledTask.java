@@ -16,7 +16,7 @@ public class ScheduledTask {
         this.producer = producer;
     }
 
-    @Scheduled(fixedRate = 100)
+    @Scheduled(fixedRate = 200)
     public void putTask() {
         producer.putTask(counter.incrementAndGet());
     }
