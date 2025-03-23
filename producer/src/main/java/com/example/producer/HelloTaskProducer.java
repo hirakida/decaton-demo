@@ -1,5 +1,7 @@
 package com.example.producer;
 
+import java.time.Instant;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,10 +21,10 @@ public class HelloTaskProducer {
     }
 
     public void putTask(int key) {
-        final long millis = System.currentTimeMillis();
+        final Instant now = Instant.now();
         final Timestamp timestamp = Timestamp.newBuilder()
-                                             .setSeconds(millis / 1000)
-                                             .setNanos((int) ((millis % 1000) * 1000000))
+                                             .setSeconds(now.getEpochSecond())
+                                             .setNanos(now.getNano())
                                              .build();
         final HelloTask task = HelloTask.newBuilder()
                                         .setMessage("Hello " + key)

@@ -1,6 +1,7 @@
 package com.example.processor;
 
 import java.time.Instant;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,8 @@ public class HelloTaskProcessor implements DecatonProcessor<HelloTask> {
     public void process(ProcessingContext<HelloTask> context, HelloTask task) throws InterruptedException {
         final Timestamp timestamp = task.getCreatedAt();
         final Instant instant = Instant.ofEpochSecond(timestamp.getSeconds(), timestamp.getNanos());
+
         LOGGER.info("message={} timestamp={} metadata={}", task.getMessage(), instant, context.metadata());
+        TimeUnit.MILLISECONDS.sleep(1000);
     }
 }

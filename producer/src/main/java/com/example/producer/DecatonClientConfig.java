@@ -15,20 +15,20 @@ import com.linecorp.decaton.protobuf.ProtocolBuffersSerializer;
 @Configuration
 public class DecatonClientConfig {
     private static final String BOOTSTRAP_SERVERS = "localhost:9092";
-    private static final String APPLICATION_ID = "decaton-demo";
     private static final String TOPIC = "topic1";
+    private static final String APPLICATION_ID = "hello-task-producer";
 
     @Bean
     public DecatonClient<HelloTask> helloClient() {
-        return newClient(TOPIC);
+        return newClient(TOPIC, APPLICATION_ID);
     }
 
-    private static <T extends MessageLite> DecatonClient<T> newClient(String topic) {
+    private static <T extends MessageLite> DecatonClient<T> newClient(String topic, String applicationId) {
         final Properties config = new Properties();
         config.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
 
         return DecatonClient.producing(topic, new ProtocolBuffersSerializer<T>())
-                            .applicationId(APPLICATION_ID)
+                            .applicationId(applicationId)
                             .producerConfig(config)
                             .build();
     }

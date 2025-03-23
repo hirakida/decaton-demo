@@ -21,9 +21,9 @@ import com.linecorp.decaton.protobuf.ProtocolBuffersDeserializer;
 @Configuration
 public class ProcessorConfig {
     private static final String BOOTSTRAP_SERVERS = "localhost:9092";
-    private static final String GROUP_ID = "group1";
-    private static final String SUBSCRIPTION_ID = "hello-processor";
     private static final String TOPIC = "topic1";
+    private static final String SUBSCRIPTION_ID = "hello-task-processor";
+    private static final String GROUP_ID = "group1";
 
     @Bean
     public ProcessorSubscription helloProcessorSubscription(HelloTaskProcessor processor) {
@@ -41,7 +41,7 @@ public class ProcessorConfig {
 
         final PropertySupplier propertySupplier =
                 StaticPropertySupplier.of(
-                        Property.ofStatic(ProcessorProperties.CONFIG_PARTITION_CONCURRENCY, 10),
+                        Property.ofStatic(ProcessorProperties.CONFIG_PARTITION_CONCURRENCY, 5),
                         Property.ofStatic(ProcessorProperties.CONFIG_MAX_PENDING_RECORDS, 100));
 
         return SubscriptionBuilder.newBuilder(subscriptionId)
